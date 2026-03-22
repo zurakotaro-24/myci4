@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use CodeIgniter\HTTP\ResponseInterface;
+use CodeIgniter\Exceptions\PageNotFoundException;
 
 class Welcome extends BaseController
 {
@@ -37,7 +38,7 @@ class Welcome extends BaseController
         // }
 
         // Throw an exception instead of returning to index.
-        throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+        throw PageNotFoundException::forPageNotFound();
 
         // Using if else manually.
         // if($method == "test") 
