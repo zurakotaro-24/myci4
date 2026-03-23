@@ -5,6 +5,6 @@
 <!-- All views must have this to use the layout view with header and footer. -->
 <?= $this->section('content') ?>
 
-    
+<!-- Insert content here. -->
 
 <?= $this->endSection() ?>

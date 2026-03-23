@@ -11,7 +11,7 @@
     <h3>Subjects: </h3>
     <ul>
         
-        <!-- Defensive programming, always check first if something is not empty before executing something -->
+        <!-- Defensive programming, always check first if something is not empty before executing something. -->
         <?php
             // if(!empty($subjects))
             // {
