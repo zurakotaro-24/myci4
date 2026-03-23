@@ -7,4 +7,9 @@
 
 <!-- Insert content here. -->
 
+<!-- You can also add partial components. -->
+<!-- <div class="container"> -->
+<!--    < ?= $this->include('partial-file-name') ?> -->
+<!-- </div> -->
+
 <?= $this->endSection() ?>

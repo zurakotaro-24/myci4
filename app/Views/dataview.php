@@ -5,7 +5,7 @@
 <!-- All views must have this to use the layout view with header and footer. -->
 <?= $this->section('content') ?>
 
-    <h1>Users list</h1>
+    <h4>Users list</h4>
     <?= $users ?>
 
 <?= $this->endSection() ?>

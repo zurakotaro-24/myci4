@@ -65,6 +65,7 @@ class DataController extends BaseController
 
         $passedData = [
             'page_title' => 'title ng dataview', 
+            'header_data' => 'Title ng header para sa header component',
             'users' => $records,
         ];
 

@@ -12,8 +12,12 @@ class BlogController extends BaseController
     
     public function __construct()
     {
-        // $parser = service('parser');
-        $this->parser = new \App\Libraries\MyParser();
+        $parser = service('parser');
+
+        // Custom Parser - doesn't work.
+        // $this->parser = new \App\Libraries\MyParser();
+
+        $this->parser = $parser;
     }
 
     public function index()
