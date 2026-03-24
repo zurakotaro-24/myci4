@@ -31,6 +31,9 @@ $routes->get('/view-filters', 'BlogController::viewFilters');
 $routes->get('/data', 'DataController::index');
 $routes->get('/anotherdata', 'DataController::anotherData');
 
+// Routes for Custom Libraries
+$routes->get('/custom', 'CustomLibController::index');
+
 // Route for error 404
 $routes->set404Override(function()
 {

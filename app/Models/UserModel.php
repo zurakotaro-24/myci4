@@ -13,7 +13,7 @@ class UserModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [];
+    protected $allowedFields    = ['name', 'address', 'email', 'mobile', 'created_at'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
@@ -61,9 +61,13 @@ class UserModel extends Model
     public function getUsersList() 
     {
         $db = Database::connect();
-        $query = $db->query('SELECT id, name, address, email, mobile FROM users;');
+        $builder = $db->table('users');
 
-        $result = $query->getResult();
+        $result = $builder
+            ->select('id, name, address, email, mobile')
+            ->get()
+            ->getResult();
+
         if(count($result) > 0)
         {
             return $result;
