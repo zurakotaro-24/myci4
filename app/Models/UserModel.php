@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use CodeIgniter\Model;
+use Config\Database;
 
 class UserModel extends Model
 {
@@ -43,4 +44,33 @@ class UserModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    // Functions
+    public function getData() 
+    {
+        $subjects = [
+            ['subject' => 'HTML', 'abbr' => 'Hyper Text Markup Language'],
+            ['subject' => 'CSS', 'abbr' => 'Cascading Style Sheet'],
+            ['subject' => 'JSON', 'abbr' => 'JavaScript Object Notation'],
+            ['subject' => 'PHP', 'abbr' => 'Hypertext Preprocessor'],
+        ];
+
+        return $subjects;
+    }
+
+    public function getUsersList() 
+    {
+        $db = Database::connect();
+        $query = $db->query('SELECT id, name, address, email, mobile FROM users;');
+
+        $result = $query->getResult();
+        if(count($result) > 0)
+        {
+            return $result;
+        }
+        else 
+        {
+            return false;
+        }
+    }
 }

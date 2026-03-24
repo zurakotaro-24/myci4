@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use CodeIgniter\HTTP\ResponseInterface;
 use CodeIgniter\View\Table;
+use App\Models\UserModel;
 
 class DataController extends BaseController
 {
@@ -70,5 +71,14 @@ class DataController extends BaseController
         ];
 
         return view("dataview", $passedData);
+    }
+
+    public function anotherData() 
+    {
+        $userModel = new UserModel();
+
+        $data['subjects'] = $userModel->getData();
+        echo "<pre>";
+        print_r($data['subjects']);
     }
 }

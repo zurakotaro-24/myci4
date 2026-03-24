@@ -15,7 +15,7 @@ use CodeIgniter\Router\RouteCollection;
 
 // Routes for users
 $routes->get('/users', 'UserController::index');
-
+$routes->get('/users-list', 'UserController::usersList');
 
 // Routes for welcome
 $routes->get('/', 'Home::index');
@@ -29,6 +29,7 @@ $routes->get('/view-filters', 'BlogController::viewFilters');
 
 // Routes for data
 $routes->get('/data', 'DataController::index');
+$routes->get('/anotherdata', 'DataController::anotherData');
 
 // Route for error 404
 $routes->set404Override(function()
