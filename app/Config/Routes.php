@@ -13,6 +13,9 @@ use CodeIgniter\Router\RouteCollection;
 // $myroutes['login'] = 'UserController::login';
 // $routes->map($myroutes);
 
+// Routes for users
+$routes->get('/users', 'UserController::index');
+
 
 // Routes for welcome
 $routes->get('/', 'Home::index');

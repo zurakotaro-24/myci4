@@ -14,7 +14,7 @@
 
     <body class="d-flex flex-column min-vh-100">
 
-        <header class="fixed-top">
+        <header class="sticky-top">
             <?= view('components/header') ?>
         </header>
         

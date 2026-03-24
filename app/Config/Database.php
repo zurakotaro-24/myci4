@@ -24,6 +24,13 @@ class Database extends Config
      *
      * @var array<string, mixed>
      */
+
+
+    /** 
+     * If you want to create another database, just copy the whole array and change the array name. 
+     * In this given, the array name is $default. The default should not also be deleted, as this is used for unparametarized connect().
+     */
+
     public array $default = [
         'DSN'          => '',
         'hostname'     => 'localhost',
