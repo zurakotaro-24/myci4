@@ -10,13 +10,13 @@ class TestMailController extends BaseController
 {
     public function index()
     {
-        $to = 'sample@gmail.com';
-        $subject = 'subject ng email to par';
-        $message = 'Eto naman ang laman. <br>Nakaset gamit html dito sa App/Config/Email.php';
+        $to = 'jared.caling@nidec.com';
+        $subject = 'Send Email Test Subject';
+        $message = 'Send Email Test Message';
 
         $email = Services::email();
         $email->setTo($to);
-        $email->setFrom('something@email.com', 'Your Name');
+        $email->setFrom(env('email.SMTPUser'), 'Jared Caling');
 
         // BCC - Blind Carbon Copy - sends a copy of the sent email to that account, invisible to the receiver.
         // $email->setBCC('somebcc@email.com');
@@ -26,7 +26,7 @@ class TestMailController extends BaseController
         $email->setSubject($subject);
         $email->setMessage($message);
         
-        $filepath = 'public\assets\images\page_banner.jpg';
+        $filepath = base_url('assets/images/page_banner.jpg');
         $email->attach($filepath);
         if($email->send())
         {

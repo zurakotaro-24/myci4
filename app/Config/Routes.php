@@ -34,6 +34,12 @@ $routes->get('/anotherdata', 'DataController::anotherData');
 // Routes for Custom Libraries
 $routes->get('/custom', 'CustomLibController::index');
 
+// Routes for Testing Helpers
+$routes->get('/helper', 'TestHelperController::index');
+
+// Routes for Testing Email 
+$routes->get('/email-test', 'TestMailController::index');
+
 // Route for error 404
 $routes->set404Override(function()
 {
