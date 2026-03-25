@@ -19,6 +19,11 @@ $routes->get('/users-list', 'UserController::usersList');
 $routes->get('/form', 'UserController::form');
 $routes->post('/save-form', 'UserController::saveForm');
 
+$routes->get('/user/login', 'UserController::loginForm');
+$routes->get('/user/register', 'UserController::registerForm');
+$routes->post('/user/login', 'UserController::loginAcc');
+$routes->post('/user/register', 'UserController::registerAcc');
+
 // Routes for welcome
 $routes->get('/', 'Home::index');
 $routes->get('/welcome', 'Welcome::index');

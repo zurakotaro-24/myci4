@@ -15,7 +15,7 @@ class UserModel extends Model
     protected $protectFields    = true;
 
     // Fields allowed for insert/update.
-    protected $allowedFields    = ['name', 'address', 'email', 'mobile'];
+    protected $allowedFields    = ['name', 'address', 'email', 'mobile', 'username', 'password'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
