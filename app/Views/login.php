@@ -7,6 +7,10 @@
 
     <h1>Login User</h1>
     
+    <?php if(session()->getFlashdata('success')): ?>
+        <?php alertMessage(session()->getFlashdata('success')) ?>
+    <?php endif; ?>
+
     <?php if(isset($error)): ?>
         <span class="text-danger">
             <?= $error; ?>

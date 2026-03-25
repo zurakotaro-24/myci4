@@ -10,7 +10,7 @@ class UserController extends BaseController
 {
     public function __construct()
     {
-        helper(['form']);
+        helper(['form', 'alert']);
     }
 
     public function index()
@@ -18,6 +18,10 @@ class UserController extends BaseController
         $userModel = new UserModel();
         $data = $userModel->getUsersList();
         echo "<pre>";
+        if(session()->getFlashdata('success'))
+        {
+            alertMessage(session()->getFlashdata('success'));
+        }
         print_r($data);
         print_r(session()->get());
         echo "</pre>";
@@ -238,7 +242,9 @@ class UserController extends BaseController
                     'username' => $user['username'], 
                     'isLoggedIn' => true, 
                 ]);
-                return redirect()->to(base_url('users'));
+                return redirect()
+                        ->to(base_url('users'))
+                        ->with('success', 'Logged in successfully');
             }
 
             return redirect()
@@ -251,6 +257,7 @@ class UserController extends BaseController
     {
         session()->destroy();
         return redirect()
-                ->to(base_url('users/login'));
+                ->to(base_url('user/login'))
+                ->with('success', 'Log out successfully.');
     }
 }
