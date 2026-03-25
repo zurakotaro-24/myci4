@@ -17,7 +17,7 @@ class TestHelperController extends BaseController
         print_r($result);
         echo '</pre>';
 
-        echo randomString();
+        echo randomString(); 
 
         // echo form_open();
         // echo form_input('username', 'gophp'); 

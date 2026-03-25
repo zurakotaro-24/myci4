@@ -16,6 +16,8 @@ use CodeIgniter\Router\RouteCollection;
 // Routes for users
 $routes->get('/users', 'UserController::index');
 $routes->get('/users-list', 'UserController::usersList');
+$routes->get('/form', 'UserController::form');
+$routes->post('/save-form', 'UserController::saveForm');
 
 // Routes for welcome
 $routes->get('/', 'Home::index');
