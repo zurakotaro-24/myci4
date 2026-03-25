@@ -8,6 +8,11 @@
             </div>
         </section>
         <section>
+                <?php if(session()->has('user_id')): ?>
+                    <?= form_open(base_url('user/logout')) ?>
+                        <button type="submit" class="btn btn-danger">Log out</button>
+                    <?= form_close() ?>
+                <?php endif; ?>
             <section id="features">
                 <div class="container">
                     <h2 class='text-center py-5 text-primary'>Our Features</h2>

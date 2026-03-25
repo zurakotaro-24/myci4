@@ -23,6 +23,7 @@ $routes->get('/user/login', 'UserController::loginForm');
 $routes->get('/user/register', 'UserController::registerForm');
 $routes->post('/user/login', 'UserController::loginAcc');
 $routes->post('/user/register', 'UserController::registerAcc');
+$routes->post('/user/logout', 'UserController::logoutAcc');
 
 // Routes for welcome
 $routes->get('/', 'Home::index');

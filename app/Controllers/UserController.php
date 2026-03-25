@@ -19,6 +19,8 @@ class UserController extends BaseController
         $data = $userModel->getUsersList();
         echo "<pre>";
         print_r($data);
+        print_r(session()->get());
+        echo "</pre>";
     }
 
     public function usersList()
@@ -161,7 +163,7 @@ class UserController extends BaseController
         {
             if(!$this->validate($rules))
             {
-                return redirect()->back()
+                return redirect()->to(base_url('/user/register'))
                                  ->withInput()
                                  ->with('validation', $this->validator);
             }
@@ -176,7 +178,79 @@ class UserController extends BaseController
                 'mobile' => $this->request->getPost('mobile'), 
             ]);
 
-            return redirect()->to('users');
+            return redirect()->to(base_url('users'));
         }
+    }
+
+    public function loginForm()
+    {
+        $data = [];
+
+        if(session()->getFlashdata('validation'))
+        {
+            $data['validation'] = session()->getFlashdata('validation');
+        }
+
+        if(session()->getFlashdata('error'))
+        {
+            $data['error'] = session()->getFlashdata('error');
+        }
+
+        return view('login', $data);
+    }
+
+    public function loginAcc()
+    {
+        $rules = [
+            'username' => [
+                'rules' => 'required', 
+                'errors' => [
+                    'required' => 'Need nga ng username par.'
+                ],
+            ],
+            'password' => [
+                'rules' => 'required', 
+                'errors' => [
+                    'required' => 'Need din ng password par.'
+                ],
+            ],
+        ];
+
+        if($this->request->getMethod() === "POST")
+        {
+            if(!$this->validate($rules))
+            {
+                return redirect()
+                            ->to(base_url('/user/login'))
+                            ->withInput()
+                            ->with('validation', $this->validator);
+            }
+
+            $userModel = new UserModel();
+            $user = $userModel
+                        ->where('username', $this->request->getPost('username'))
+                        ->first();
+
+            if($user && password_verify($this->request->getPost('password'), $user['password']))
+            {
+                session()->set([
+                    'user_id' => $user['id'], 
+                    'username' => $user['username'], 
+                    'isLoggedIn' => true, 
+                ]);
+                return redirect()->to(base_url('users'));
+            }
+
+            return redirect()
+                        ->to(base_url('/user/login'))
+                        ->with('error', 'Invalid login credentials');
+        }
+    }
+
+    public function logoutAcc()
+    {
+        session()->destroy();
+        return redirect()
+                ->to(base_url('users/login'));
     }
 }
