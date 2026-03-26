@@ -13,6 +13,35 @@ use CodeIgniter\Router\RouteCollection;
 // $myroutes['login'] = 'UserController::login';
 // $routes->map($myroutes);
 
+// For creating routes with controller in each line.
+// Routes for blogs
+// Pages
+// $routes->get('/blogs', 'BlogController::index');
+// $routes->get('/blogs/create', 'BlogController::create');
+// $routes->get('/blogs/edit/(:num)', 'BlogController::edit/$1');
+// $routes->get('/blogs/view-filters', 'BlogController::viewFilters');
+
+// // POST Requests
+// $routes->post('/blogs/insert', 'BlogController::insert');
+// $routes->post('/blogs/update/(:num)', 'BlogController::update/$1');
+
+
+// Routes for blogs
+// group('blogs') - each route inside the group starts with '/blogs'.
+// get('create') - each route adds this route to the '/blogs', resulting in '/blogs/create'.
+$routes->group('blogs', function($routes) {
+    //Pages
+    $routes->get('/', 'BlogController::index');
+    $routes->get('create', 'BlogController::create');
+    $routes->get('edit/(:num)', 'BlogController::edit/$1');
+    $routes->get('view-filters', 'BlogController::viewFilters');
+
+    // POST Requests
+    $routes->post('insert', 'BlogController::insert');
+    $routes->post('update/(:num)', 'BlogController::update/$1');
+
+});
+
 // Routes for users
 $routes->get('/users', 'UserController::index');
 $routes->get('/users-list', 'UserController::usersList');
@@ -30,10 +59,6 @@ $routes->get('/', 'Home::index');
 $routes->get('/welcome', 'Welcome::index');
 $routes->get('/welcome/grettings', 'Welcome::greet');
 $routes->get('/welcome/(:any)/(:any)', 'Welcome::test/$1/$2');
-
-// Routes for blogs
-$routes->get('/blogs', 'BlogController::index');
-$routes->get('/view-filters', 'BlogController::viewFilters');
 
 // Routes for data
 $routes->get('/data', 'DataController::index');

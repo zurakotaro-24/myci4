@@ -110,11 +110,6 @@ class UserController extends BaseController
             $data['validation'] = session()->getFlashdata('validation');
         }
 
-        if(session()->getFlashdata('message'))
-        {
-            $data['message'] = session()->getFlashdata('message');
-        }
-
         return view('register', $data);
     }
 
@@ -174,12 +169,12 @@ class UserController extends BaseController
 
             $userModel = new UserModel();
             $userModel->save([
-                'username' => $this->request->getPost('username'), 
+                'username' => strip_tags($this->request->getPost('username')), 
                 'password' => password_hash($this->request->getPost('password'), PASSWORD_DEFAULT), 
-                'name' => $this->request->getPost('name'), 
-                'address' => $this->request->getPost('address'),
-                'email' => $this->request->getPost('email'), 
-                'mobile' => $this->request->getPost('mobile'), 
+                'name' => strip_tags($this->request->getPost('name')), 
+                'address' => strip_tags($this->request->getPost('address')),
+                'email' => strip_tags($this->request->getPost('email')), 
+                'mobile' => strip_tags($this->request->getPost('mobile')), 
             ]);
 
             return redirect()->to(base_url('users'));

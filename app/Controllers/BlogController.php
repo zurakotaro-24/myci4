@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use CodeIgniter\HTTP\ResponseInterface;
 use App\Libraries\MyParser;
+use App\Models\BlogModel;
 
 class BlogController extends BaseController
 {
@@ -12,6 +13,7 @@ class BlogController extends BaseController
     
     public function __construct()
     {
+        helper(['form', 'alert']);
         $parser = service('parser');
 
         // Custom Parser - doesn't work.
@@ -22,12 +24,67 @@ class BlogController extends BaseController
 
     public function index()
     {
-        $data = [
-            'page_title' => 'Title ng page', 
-            'page_heading' => 'Heading ng page',
-            'subjects' => ['HTML', 'CSS', 'Javascript', 'PHP', 'C#', 'Java'],
+        // $data = [
+        //     'page_title' => 'Title ng page', 
+        //     'page_heading' => 'Heading ng page',
+        //     'subjects' => ['HTML', 'CSS', 'Javascript', 'PHP', 'C#', 'Java'],
+        // ];
+        // return view('myview', $data);
+    
+    
+        return view('blogs/index');
+    }
+
+    public function create()
+    {
+        $data = [];
+
+        if(session()->getFlashdata('validation'))
+        {
+            $data['validation'] = session()->getFlashData('validation');
+        }
+        
+        return view('blogs/create', $data);
+    }
+
+    public function insert()
+    {
+        $rules = [
+            'title' => [
+                'rules' => 'required|min_length[5]', 
+                'errors' => [
+                    'required' => 'The title is needed for the blog.', 
+                    'min_length' => 'The title should be at least {param} characters',
+                ],
+            ], 
+            'content' => [
+                'rules' => 'required|min_length[5]', 
+                'errors' => [
+                    'required' => 'The content is needed for the blog.', 
+                    'min_length' => 'The content should be at least {param} characters',
+                ],
+            ],
         ];
-        return view('myview', $data);
+
+        if($this->request->getMethod() === "POST")
+        {
+            if(!$this->validate($rules))
+            {
+                return redirect()
+                            ->to(base_url('/blogs/create'))
+                            ->withInput()
+                            ->with('validation', $this->validator);
+            }
+
+            $blogModel = new BlogModel();
+            $blogModel->save([
+                'user_id' => 9, 
+                'title' => strip_tags($this->request->getPost('title')), 
+                'content' => $this->request->getPost('content'),
+            ]);
+            
+            return redirect()->to(base_url('blogs'));
+        }
     }
 
     public function viewFilters() 
