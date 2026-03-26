@@ -39,7 +39,7 @@ $routes->group('blogs', ['filter' => 'auth'], function($routes) {
 
     // Method Requests
     $routes->post('insert', 'BlogController::insert');
-    $routes->post('update/(:num)', 'BlogController::update/$1');
+    $routes->put('update/(:num)', 'BlogController::update/$1');
     $routes->delete('delete/(:num)', 'BlogController::delete/$1');
 });
 

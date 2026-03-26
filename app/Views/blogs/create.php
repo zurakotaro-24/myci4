@@ -8,6 +8,7 @@
                 <h1>Create Blog</h1>
 
                 <?= form_open_multipart('blogs/insert') ?>
+                    <?= csrf_field() ?>
                     <div class="form-group">
                         <label>Title</label>
                         <input type="text" name="title" class="form-control" value="<?= set_value('title') ?>">

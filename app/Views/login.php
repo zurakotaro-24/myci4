@@ -18,6 +18,7 @@
     <?php endif; ?>
 
     <?= form_open(base_url('user/login')) ?>
+        <?= csrf_field() ?>
         <table>
             <tr>
                 <td>Username: </td>

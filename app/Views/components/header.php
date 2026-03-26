@@ -44,7 +44,8 @@
             </form>
             <?php if(session()->get('isLoggedIn')): ?>
                 <?= form_open(base_url('user/logout')) ?>
-                    <button class="btn btn-outline-danger my-2 my-sm-0" type="submit" onclick="">Log out</button>
+                    <?= csrf_field() ?>
+                    <button class="btn btn-outline-danger my-2 my-sm-0" type="submit" onclick="return confirm('Are you sure you want to log out?')">Log out</button>
                 <?= form_close() ?>
             <?php endif; ?>
         </div>
