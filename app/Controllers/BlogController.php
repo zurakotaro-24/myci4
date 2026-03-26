@@ -37,6 +37,14 @@ class BlogController extends BaseController
         return view('blogs/index', $data);
     }
 
+    public function show($id)
+    {
+        $blogModel = new BlogModel();
+        $data['blog'] = $blogModel->getSpecificBlog($id);
+
+        return view('blogs/show', $data);
+    }
+
     public function create()
     {
         $data = [];

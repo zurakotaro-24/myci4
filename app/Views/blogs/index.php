@@ -22,7 +22,8 @@
                             <tr>
                                 <td><?= $blog['id'] ?></td>
                                 <td><?= $blog['title'] ?></td>
-                                <td><?= $blog['name'] ?></td>
+                                <td><?= $blog['author'] ?></td>
+                                <td><a href="<?= base_url('blogs/' . $blog['id']) ?>">Open Blog</a></td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>

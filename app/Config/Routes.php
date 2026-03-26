@@ -32,6 +32,7 @@ use CodeIgniter\Router\RouteCollection;
 $routes->group('blogs', ['filter' => 'auth'], function($routes) {
     //Pages
     $routes->get('/', 'BlogController::index');
+    $routes->get('(:num)', 'BlogController::show/$1');
     $routes->get('create', 'BlogController::create');
     $routes->get('edit/(:num)', 'BlogController::edit/$1');
     $routes->get('view-filters', 'BlogController::viewFilters');

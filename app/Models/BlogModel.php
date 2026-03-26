@@ -46,8 +46,13 @@ class BlogModel extends Model
 
     public function getBlogsWithAuthors()
     {
-        return $this->select('blogs.id, blogs.title, users.name')
+        return $this->select(['blogs.id as id', 'blogs.title as title', 'users.name as author'])
                     ->join('users', 'users.id = blogs.user_id')
                     ->findAll();
+    }
+
+    public function getSpecificBlog($id)
+    {
+        return $this->find($id);
     }
 }
