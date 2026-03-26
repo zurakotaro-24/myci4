@@ -27,7 +27,7 @@ class Auth implements FilterInterface
     {
         if(!session()->get('isLoggedIn'))
         {
-            return redirect()->to('/user/login');
+            return redirect()->to(base_url('/user/login'));
         }
     }
 

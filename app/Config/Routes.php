@@ -29,7 +29,7 @@ use CodeIgniter\Router\RouteCollection;
 // Routes for blogs
 // group('blogs') - each route inside the group starts with '/blogs'.
 // get('create') - each route adds this route to the '/blogs', resulting in '/blogs/create'.
-$routes->group('blogs', function($routes) {
+$routes->group('blogs', ['filter' => 'auth'], function($routes) {
     //Pages
     $routes->get('/', 'BlogController::index');
     $routes->get('create', 'BlogController::create');

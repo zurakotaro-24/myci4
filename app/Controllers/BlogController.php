@@ -78,7 +78,7 @@ class BlogController extends BaseController
 
             $blogModel = new BlogModel();
             $blogModel->save([
-                'user_id' => 9, 
+                'user_id' => session()->get('user_id'), 
                 'title' => strip_tags($this->request->getPost('title')), 
                 'content' => $this->request->getPost('content'),
             ]);
