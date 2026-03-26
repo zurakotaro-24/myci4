@@ -42,6 +42,11 @@ class BlogController extends BaseController
         $blogModel = new BlogModel();
         $data['blog'] = $blogModel->getSpecificBlog($id);
 
+        if(!$data['blog'])
+        {
+            return redirect()->to(base_url('blogs'));
+        }
+
         return view('blogs/show', $data);
     }
 

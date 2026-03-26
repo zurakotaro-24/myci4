@@ -8,26 +8,30 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1>List of  Blogs</h1>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Title</th>
-                            <th>Author</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach($blogs as $blog): ?>
+                <?php if(count($blogs) > 0): ?>
+                    <h1>List of  Blogs</h1>
+                    <table>
+                        <thead>
                             <tr>
-                                <td><?= $blog['id'] ?></td>
-                                <td><?= $blog['title'] ?></td>
-                                <td><?= $blog['author'] ?></td>
-                                <td><a href="<?= base_url('blogs/' . $blog['id']) ?>">Open Blog</a></td>
+                                <th>ID</th>
+                                <th>Title</th>
+                                <th>Author</th>
                             </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            <?php foreach($blogs as $blog): ?>
+                                <tr>
+                                    <td><?= $blog['id'] ?></td>
+                                    <td><?= $blog['title'] ?></td>
+                                    <td><?= $blog['author'] ?></td>
+                                    <td><a href="<?= base_url('blogs/' . $blog['id']) ?>">Open Blog</a></td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                <?php else: ?>
+                    <p>No blogs yet</p>
+                <?php endif; ?>
             </div>
         </div>
     </div>

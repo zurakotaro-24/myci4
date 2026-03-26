@@ -168,8 +168,18 @@ class UserController extends BaseController
             }
 
             $userModel = new UserModel();
+            $username = strip_tags($this->request->getPost('username'));
+            $existing = $userModel->where('username', $username)->first();
+
+            if($existing)
+            {
+                return redirect()->to(base_url('/user/register'))
+                                 ->withInput()
+                                 ->with('duplicate', 'Username is already used.');
+            }
+
             $userModel->save([
-                'username' => strip_tags($this->request->getPost('username')), 
+                'username' => $username, 
                 'password' => password_hash($this->request->getPost('password'), PASSWORD_DEFAULT), 
                 'name' => strip_tags($this->request->getPost('name')), 
                 'address' => strip_tags($this->request->getPost('address')),

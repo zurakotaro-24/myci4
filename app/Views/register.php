@@ -14,6 +14,9 @@
                 <td>
                     <input type="text" name="username" value="<?= set_value('username') ?>">
                     <span class="text-danger">
+                        <?php if(session()->getFlashdata('duplicate')): ?>
+                            <?= session()->getFlashdata('duplicate') ?>
+                        <?php endif; ?>
                         <?= displayError($validation ?? null, 'username') ?>
                     </span>
                 </td>
