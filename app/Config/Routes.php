@@ -63,6 +63,7 @@ $routes->get('/welcome/(:any)/(:any)', 'Welcome::test/$1/$2');
 // Routes for data
 $routes->get('/data', 'DataController::index');
 $routes->get('/anotherdata', 'DataController::anotherData');
+$routes->post('/data/submit', 'DataController::sendImage');
 
 // Routes for Custom Libraries
 $routes->get('/custom', 'CustomLibController::index');

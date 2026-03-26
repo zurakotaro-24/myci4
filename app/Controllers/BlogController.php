@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use CodeIgniter\HTTP\ResponseInterface;
 use App\Libraries\MyParser;
+use App\Libraries\UploadImage;
 use App\Models\BlogModel;
 
 class BlogController extends BaseController
@@ -49,6 +50,7 @@ class BlogController extends BaseController
 
     public function insert()
     {
+
         $rules = [
             'title' => [
                 'rules' => 'required|min_length[5]', 
@@ -64,6 +66,14 @@ class BlogController extends BaseController
                     'min_length' => 'The content should be at least {param} characters',
                 ],
             ],
+            'image' => [
+                'rules' => 'uploaded[image]|is_image[image]|mime_in[image,image/jpg,image/jpeg,image/png]', 
+                'errors' => [
+                    'uploaded' => 'Image is required for the blog', 
+                    'is_image' => 'The uploaded file should be an image', 
+                    'mime_in' => 'The file should be in jpg/jpeg or png format',
+                ],
+            ],
         ];
 
         if($this->request->getMethod() === "POST")
@@ -72,8 +82,19 @@ class BlogController extends BaseController
             {
                 return redirect()
                             ->to(base_url('/blogs/create'))
-                            ->withInput()
-                            ->with('validation', $this->validator);
+                            ->withInput();
+            }
+
+            $file = $this->request->getFile('image');
+
+            $uploader = new UploadImage('blogs');
+            $uploadPath = $uploader->upload($file);
+
+            if(!$uploadPath)
+            {
+                return redirect()
+                            ->to(base_url('/blogs/create'))
+                            ->withInput();
             }
 
             $blogModel = new BlogModel();
@@ -81,6 +102,7 @@ class BlogController extends BaseController
                 'user_id' => session()->get('user_id'), 
                 'title' => strip_tags($this->request->getPost('title')), 
                 'content' => $this->request->getPost('content'),
+                'image' => $uploadPath,
             ]);
             
             return redirect()->to(base_url('blogs'));

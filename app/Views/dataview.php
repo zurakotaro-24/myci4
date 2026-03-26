@@ -8,4 +8,10 @@
     <h4>Users list</h4>
     <?= $users ?>
 
+    <?= form_open_multipart(base_url('data/submit')) ?>
+        <label>Upload Image: </label>
+        <input type="file" name="image">
+        <button type="submit">Submit</button>
+    <?= form_close() ?>
+
 <?= $this->endSection() ?>

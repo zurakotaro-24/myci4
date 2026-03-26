@@ -9,6 +9,11 @@ use App\Models\UserModel;
 
 class DataController extends BaseController
 {
+    public function __construct()
+    {
+        helper(['form']);
+    }
+
     public function index()
     {
         $table = new Table();
@@ -71,6 +76,24 @@ class DataController extends BaseController
         ];
 
         return view("dataview", $passedData);
+    }
+
+    public function sendImage()
+    {
+        if($this->request->getMethod() === 'post')
+        {
+            $file = $this->request->getFile('image');
+            if($file->isValid() && !$file->hasMoved())
+            {
+                log_message('debug', print_r($file, true));
+
+                exit;
+            }
+            else {
+                echo 'the file is invalid';
+                exit;
+            }
+        }
     }
 
     public function anotherData() 
