@@ -43,4 +43,11 @@ class BlogModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function getBlogsWithAuthors()
+    {
+        return $this->select('blogs.id, blogs.title, users.name')
+                    ->join('users', 'users.id = blogs.user_id')
+                    ->findAll();
+    }
 }

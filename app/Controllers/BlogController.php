@@ -31,9 +31,10 @@ class BlogController extends BaseController
         //     'subjects' => ['HTML', 'CSS', 'Javascript', 'PHP', 'C#', 'Java'],
         // ];
         // return view('myview', $data);
+        $blogModel = new BlogModel();
+        $data['blogs'] = $blogModel->getBlogsWithAuthors();
     
-    
-        return view('blogs/index');
+        return view('blogs/index', $data);
     }
 
     public function create()

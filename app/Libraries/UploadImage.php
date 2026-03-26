@@ -13,8 +13,10 @@ class UploadImage
 
     public function upload($file): string|false
     {
+
         if(!$file->isValid() || $file->hasMoved())
         {
+            
             return false;
         }
 
@@ -27,7 +29,7 @@ class UploadImage
                 throw new \RuntimeException('Failed to create upload directory: ' . $uploadPath);
             }
         }
-
+    
         $newName = $file->getRandomName();
         $file->move($uploadPath, $newName);
 
