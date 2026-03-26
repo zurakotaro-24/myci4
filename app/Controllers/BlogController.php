@@ -123,6 +123,13 @@ class BlogController extends BaseController
         }
     }
 
+    public function delete($id)
+    {
+        $blogModel = new BlogModel();
+        $blogModel->delete($id);
+        return redirect()->to(base_url('blogs'));
+    }
+
     public function viewFilters() 
     {
         $data = [

@@ -37,10 +37,10 @@ $routes->group('blogs', ['filter' => 'auth'], function($routes) {
     $routes->get('edit/(:num)', 'BlogController::edit/$1');
     $routes->get('view-filters', 'BlogController::viewFilters');
 
-    // POST Requests
+    // Method Requests
     $routes->post('insert', 'BlogController::insert');
     $routes->post('update/(:num)', 'BlogController::update/$1');
-
+    $routes->delete('delete/(:num)', 'BlogController::delete/$1');
 });
 
 // Routes for users

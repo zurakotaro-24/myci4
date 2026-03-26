@@ -18,6 +18,14 @@
         <label>Image: </label>
         <img src="<?= base_url('uploads/' . $blog['image']) ?>">
     </div>
+    <?= form_open(base_url('blogs/delete/' . $blog['id'])) ?>
+        <?= csrf_field() ?>
+        <input type="hidden" name="_method" value="DELETE">
+        <button type="submit" class="btn btn-danger"
+                onclick="return confirm('Are you sure you want to delete this blog?')">
+            Delete
+        </button>
+    <?= form_close() ?>
 </div>
 
 <?= $this->endSection() ?>
