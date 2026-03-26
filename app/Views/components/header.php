@@ -42,6 +42,11 @@
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
+            <?php if(session()->get('isLoggedIn')): ?>
+                <?= form_open(base_url('user/logout')) ?>
+                    <button class="btn btn-outline-danger my-2 my-sm-0" type="submit" onclick="">Log out</button>
+                <?= form_close() ?>
+            <?php endif; ?>
         </div>
     </div>
 </nav>

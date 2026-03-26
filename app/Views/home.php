@@ -8,7 +8,7 @@
             </div>
         </section>
         <section>
-                <?php if(session()->has('user_id')): ?>
+                <?php if(session()->get('isLoggedIn')): ?>
                     <?= form_open(base_url('user/logout')) ?>
                         <button type="submit" class="btn btn-danger">Log out</button>
                     <?= form_close() ?>
