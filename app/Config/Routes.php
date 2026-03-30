@@ -38,9 +38,9 @@ $routes->group('blogs', ['filter' => 'auth'], function($routes) {
     $routes->get('view-filters', 'BlogController::viewFilters');
 
     // Method Requests
-    $routes->post('insert', 'BlogController::insert');
-    $routes->put('update/(:num)', 'BlogController::update/$1');
-    $routes->delete('delete/(:num)', 'BlogController::delete/$1');
+    $routes->post('/', 'BlogController::insert');
+    $routes->put('/(:num)', 'BlogController::update/$1');
+    $routes->delete('/(:num)', 'BlogController::delete/$1');
 });
 
 // Routes for users

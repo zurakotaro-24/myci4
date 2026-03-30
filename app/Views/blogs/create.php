@@ -7,7 +7,7 @@
             <div class="col-md-12">
                 <h1>Create Blog</h1>
 
-                <?= form_open_multipart('blogs/insert') ?>
+                <?= form_open_multipart(base_url('blogs/insert')) ?>
                     <?= csrf_field() ?>
                     <div class="form-group">
                         <label>Title</label>
